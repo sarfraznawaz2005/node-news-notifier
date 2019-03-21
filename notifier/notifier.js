@@ -7,18 +7,16 @@ const dayjs = require("dayjs");
 
 const config = require('./config');
 
+const guids = [];
+let count = 0;
+        
 module.exports = class Notifier {
 
     constructor() {
-
-        this.guids = [];
-        this.count = 0;
-
         if (config.sources) {
             this.getFeeds();
             this.setupInterval();
         }
-
     }
 
     getFeeds() {
@@ -31,12 +29,12 @@ module.exports = class Notifier {
 
                     const diffDays = dayjs().diff(dayjs(item.isoDate), 'day');
 
-                    if (!this.guids.includes(item.guid) && diffDays <= 1) {
+                    if (!guids.includes(item.guid) && diffDays <= 1) {
                         this.notify(feed.title.trim(), item.contentSnippet.trim(), item.link.trim());
-                        this.guids.push(item.guid);
-                        this.count++;
+                        guids.push(item.guid);
+                        count++;
 
-                        console.log(`New Feed ${this.count} - ${item.title.trim()}`);
+                        console.log(`New Feed ${count} - ${item.title.trim()}`);
                     }
 
                 });
