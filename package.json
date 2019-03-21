@@ -1,0 +1,18 @@
+{
+  "name": "paknewsnotifier",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "is-online": "^8.1.0",
+    "node-notifier": "^5.4.0",
+    "pretty-error": "^2.1.1",
+    "rss-parser": "^3.7.0"
+  }
+}

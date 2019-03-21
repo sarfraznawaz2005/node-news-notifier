@@ -1,0 +1,4 @@
+node_modules/
+.sonarlint/
+package-lock.json
+debug.log
