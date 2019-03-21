@@ -5,7 +5,9 @@ const Notifier = require('./notifier/notifier');
 
 // catch un-handled promise errors
 process.setMaxListeners(0);
-process.on("unhandledRejection", (reason, p) => {});
+process.on("unhandledRejection", (reason, p) => {
+    console.error(reason);
+});
 
 try {
     const notifier = new Notifier();
