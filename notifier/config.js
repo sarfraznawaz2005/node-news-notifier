@@ -10,5 +10,5 @@ module.exports = {
         "https://www.techjuice.pk/feed/"
     ],
     // interval in minutes to check for new feeds
-    interval: 1
+    interval: 5
 };
