@@ -1,7 +1,7 @@
 {
-  "name": "paknewsnotifier",
+  "name": "newsme",
   "version": "1.0.0",
-  "description": "",
+  "description": "Node News/Feed Notifier",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,8 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dayjs": "^1.8.11",
     "is-online": "^8.1.0",
     "node-notifier": "^5.4.0",
+    "open": "0.0.5",
     "pretty-error": "^2.1.1",
     "rss-parser": "^3.7.0"
   }

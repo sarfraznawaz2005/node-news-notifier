@@ -1,10 +1,16 @@
 // setup error handler
 require('pretty-error').start();
 
-const Notifier = require('./notifier');
-const config = require('./config');
+const Notifier = require('./notifier/notifier');
 
-new Notifier({
-    sources: config.sources,
-    interval: config.interval
-});
+// catch un-handled promise errors
+process.setMaxListeners(0);
+process.on("unhandledRejection", (reason, p) => {});
+
+try {
+    const notifier = new Notifier();
+    notifier.getFeeds();
+
+} catch (e) {
+    console.error(`Error: ${e}`);
+}
