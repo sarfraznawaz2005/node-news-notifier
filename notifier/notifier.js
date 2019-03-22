@@ -8,8 +8,6 @@ const colors = require('colors');
 
 const config = require('./config');
 
-//const guids = [];
-
 module.exports = class Notifier {
 
     constructor() {
@@ -47,8 +45,6 @@ module.exports = class Notifier {
 
             });
         }, (config.interval * 60000));
-
-
     }
 
     // used to show notification on right bottom of screen
