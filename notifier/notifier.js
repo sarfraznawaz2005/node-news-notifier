@@ -20,6 +20,8 @@ module.exports = class Notifier {
     }
 
     getFeeds() {
+        const that = this;
+
         config.sources.forEach((source) => {
             try {
                 parser.parseURL(source).then((feed) => {
@@ -30,8 +32,8 @@ module.exports = class Notifier {
                     const diffDays = dayjs().diff(dayjs(item.isoDate), 'day');
 
                     if (!guids.includes(item.guid) && diffDays <= 1) {
-                        this.notify(feed.title.trim(), item.contentSnippet.trim(), item.link.trim());
-                        this.draw(item);
+                        that.notify(feed.title.trim(), item.contentSnippet.trim(), item.link.trim());
+                        that.draw(item);
 
                         guids.push(item.guid);
                         count++;
