@@ -9,6 +9,8 @@ module.exports = {
         "https://www.thenews.com.pk/rss/1/11",
         "https://www.techjuice.pk/feed/"
     ],
-    // interval in minutes to check for new feeds
-    interval: 1
+    // time in minutes to check for new feeds
+    interval: 1,
+    // time in seconds notification popup should be visble
+    popup_interval:15
 };

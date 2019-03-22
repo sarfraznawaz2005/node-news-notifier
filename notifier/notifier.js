@@ -55,6 +55,7 @@ module.exports = class Notifier {
             message: message,
             icon: path.join(__dirname, 'icon.png'),
             wait: true,
+            timeout: config.popup_interval,
             link: link
         });
 
