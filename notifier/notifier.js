@@ -4,12 +4,12 @@ const notification = require('node-notifier');
 const path = require('path');
 const open = require('open');
 const dayjs = require("dayjs");
+const colors = require('colors');
 
 const config = require('./config');
 
 const guids = [];
 let count = 0;
-        
 module.exports = class Notifier {
 
     constructor() {
@@ -31,10 +31,10 @@ module.exports = class Notifier {
 
                     if (!guids.includes(item.guid) && diffDays <= 1) {
                         this.notify(feed.title.trim(), item.contentSnippet.trim(), item.link.trim());
+                        this.draw(item);
+
                         guids.push(item.guid);
                         count++;
-
-                        console.log(`New Feed ${count} - ${item.title.trim()}`);
                     }
 
                 });
@@ -63,5 +63,12 @@ module.exports = class Notifier {
         notification.on('click', (obj, options) => {
             open(options.link);
         });
+    }
+
+    draw(feed) {
+        console.log('\n_____________________________________________________________\n');
+        console.log(colors.green(feed.title));
+        console.log(colors.yellow(feed.link));
+        console.log('\n' + feed.contentSnippet);
     }
 }
