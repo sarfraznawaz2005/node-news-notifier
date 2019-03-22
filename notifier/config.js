@@ -10,7 +10,5 @@ module.exports = {
         "https://www.techjuice.pk/feed/"
     ],
     // time in minutes to check for new feeds
-    interval: 1,
-    // time in seconds notification popup should be visble
-    popup_interval:15
+    interval: 1
 };
