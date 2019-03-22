@@ -8,46 +8,47 @@ const colors = require('colors');
 
 const config = require('./config');
 
-const guids = [];
+//const guids = [];
 
 module.exports = class Notifier {
 
     constructor() {
         if (config.sources) {
             this.getFeeds();
-            this.setupInterval();
         }
+
+        this.guids = [];
     }
 
     getFeeds() {
         const that = this;
 
-        config.sources.forEach((source) => {
-            try {
-                parser.parseURL(source).then((feed) => {
+        setInterval(() => {
+            config.sources.forEach((source) => {
+                try {
+                    parser.parseURL(source).then((feed) => {
 
-                    const items = feed.items;
-                    const item = items[0];
+                        const items = feed.items;
+                        const item = items[0];
 
-                    const diffDays = dayjs().diff(dayjs(item.isoDate), 'day');
+                        const diffDays = dayjs().diff(dayjs(item.isoDate), 'day');
 
-                    if (!guids.includes(item.guid) && diffDays <= 1) {
-                        that.notify(feed.title.trim(), item.contentSnippet.trim(), item.link.trim());
-                        that.draw(item);
+                        if (!that.guids.includes(item.guid) && diffDays <= 1) {
+                            that.notify(feed.title.trim(), item.contentSnippet.trim(), item.link.trim());
+                            that.draw(item);
 
-                        guids.push(item.guid);
-                    }
+                            that.guids.push(item.guid);
+                        }
 
-                });
-            } catch (e) {
-                console.error(`Error: ${e}`);
-            }
+                    });
+                } catch (e) {
+                    console.error(`Error: ${e}`);
+                }
 
-        });
-    }
+            });
+        }, (config.interval * 60000));
 
-    setupInterval() {
-        setInterval(this.getFeeds, (config.interval * 60000));
+
     }
 
     // used to show notification on right bottom of screen
