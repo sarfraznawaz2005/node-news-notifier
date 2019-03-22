@@ -9,7 +9,7 @@ const colors = require('colors');
 const config = require('./config');
 
 const guids = [];
-let count = 0;
+
 module.exports = class Notifier {
 
     constructor() {
@@ -36,7 +36,6 @@ module.exports = class Notifier {
                         that.draw(item);
 
                         guids.push(item.guid);
-                        count++;
                     }
 
                 });
